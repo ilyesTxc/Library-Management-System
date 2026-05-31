@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Book {
     private String id;
     private String title;
@@ -11,5 +13,37 @@ public class Book {
         this.availableCopies = availableCopies;
     }
 
+    public String getId(){
+        return id;
+    }
+
+    public boolean equals(Object obj){
+        if(this == obj){
+            return true;
+        }
+        if(obj == null || getClass() != obj.getClass()){
+            return false;
+        }
+
+        Book other = (Book) obj;
+
+        return Objects.equals(this.id,other.id);
+    }
+
+    public int getAvailableCopies(){
+        return this.availableCopies;
+    }
+
+    public void decreaseAvaialbleCopies(){
+        this.availableCopies--;
+    }
+
+    public void incrementAvaialbleCopies(){
+        this.availableCopies++;
+    }
+
+    public String getAuthor(){
+        return this.author;
+    }
 
 }

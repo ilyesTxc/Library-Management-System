@@ -3,7 +3,5 @@ public class Librarian extends Person{
         super(id,name);
     }
 
-    public void role(){
-
-    }
+    public void role(){}
 }

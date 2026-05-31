@@ -11,5 +11,16 @@ public class Loan {
         this.dueDate = dueDate;
     }
 
+    public String getBookId(){
+        return this.bookId;
+    }
+
+    public String getMemberId(){
+        return this.memberId;
+    }
+
+    public LocalDate getDueDate(){
+        return this.dueDate;
+    }
 
 }
