@@ -9,7 +9,7 @@ public abstract class Person {
     }
     public abstract void role();
 
-    public String getId(){
+    public String getPersonId(){
         return this.id;
     }
 

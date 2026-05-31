@@ -28,4 +28,8 @@ public class Loan {
     public LocalDate getBorrowDate(){
         return this.borrowDate;
     }
+
+    public String toString() {
+        return "Book{'id' = " + bookId + " 'member'= " + memberId + " 'due date' = " + dueDate + " 'borrowed date' = " + borrowDate + "}";
+    }
 }

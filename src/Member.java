@@ -11,7 +11,7 @@ public class Member extends Person{
     public void role(){}
 
     public String getId(){
-        return this.getId();
+        return this.getPersonId();
     }
 
     public void addBorrowedBook(String id){

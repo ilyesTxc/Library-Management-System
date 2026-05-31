@@ -6,46 +6,50 @@ public class Book {
     private String author;
     private int availableCopies;
 
-    Book(String id, String title,String author, int availableCopies){
+    Book(String id, String title, String author, int availableCopies) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.availableCopies = availableCopies;
     }
 
-    public String getId(){
+    public String getId() {
         return id;
     }
 
-    public boolean equals(Object obj){
-        if(this == obj){
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if(obj == null || getClass() != obj.getClass()){
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         Book other = (Book) obj;
-        return Objects.equals(this.id,other.id);
+        return Objects.equals(this.id, other.id);
     }
 
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(id);
     }
 
-    public int getAvailableCopies(){
+    public int getAvailableCopies() {
         return this.availableCopies;
     }
 
-    public void decreaseAvaialbleCopies(){
+    public void decreaseAvaialbleCopies() {
         this.availableCopies--;
     }
 
-    public void incrementAvaialbleCopies(){
+    public void incrementAvaialbleCopies() {
         this.availableCopies++;
     }
 
-    public String getAuthor(){
+    public String getAuthor() {
         return this.author;
+    }
+
+    public String toString() {
+        return "Book{'id' = " + id + " 'title'= " + title + " 'author' = " + author + " 'available copied' = " + availableCopies + "}";
     }
 
 }
