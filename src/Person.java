@@ -8,4 +8,12 @@ public abstract class Person {
         // this(id,name) that means call another constructor from the same class thats why it doesnt work
     }
     public abstract void role();
+
+    public String getId(){
+        return this.id;
+    }
+
+    public String getName(){
+        return this.name;
+    }
 }

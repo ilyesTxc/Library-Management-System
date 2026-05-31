@@ -24,10 +24,12 @@ public class Book {
         if(obj == null || getClass() != obj.getClass()){
             return false;
         }
-
         Book other = (Book) obj;
-
         return Objects.equals(this.id,other.id);
+    }
+
+    public int hashCode(){
+        return Objects.hash(id);
     }
 
     public int getAvailableCopies(){

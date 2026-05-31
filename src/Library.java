@@ -6,13 +6,13 @@ public class Library {
     private BookRepository repository;
     private List<Librarian> librarians;
     private List<Member> members;
-    private TreeMap<LocalDate, List<Loan>> loans;
+    private TreeMap<LocalDate, List<Loan>> loansByDueDate;
 
     Library(){
         this.repository = new BookRepository();
         this.librarians = new ArrayList<>();
         this.members = new ArrayList<>();
-        this.loans = new TreeMap<>();
+        this.loansByDueDate = new TreeMap<>();
     }
 
     public void addBook(Book b){
@@ -33,10 +33,10 @@ public class Library {
         }
         // set a loan date
         if(b.getAvailableCopies() > 0){
-            Loan bookLoan = new Loan(b.getId(),member.getId(),LocalDate.now().plusDays(14));
+            Loan bookLoan = new Loan(b.getId(),member.getId(),LocalDate.now().plusDays(14),LocalDate.now());
             LocalDate today = LocalDate.now();
 
-            loans.computeIfAbsent(today, date -> new ArrayList<>()).add(bookLoan);
+            loansByDueDate.computeIfAbsent(today, date -> new ArrayList<>()).add(bookLoan);
 
             member.addBorrowedBook(b.getId());
             b.decreaseAvaialbleCopies();
@@ -50,34 +50,40 @@ public class Library {
             return;
         }
 
+        List<Loan> loansOnDate = loansByDueDate.get(borrowDate); // list of loans on that date
+
+        if(loansOnDate == null){
+            System.out.println("No loans found on this date.");
+            return;
+        }
+
+        boolean removed = loansOnDate.removeIf(loan -> loan.getBookId().equals(b.getId())
+                            && loan.getMemberId().equals(member.getId()));
+
+        if(!removed){
+            System.out.println("This member did not borrow this book on this date");
+            return;
+        }
+
         member.removeBorrowedBook(b.getId());
         b.incrementAvaialbleCopies();
 
-        List<Loan> loansOnDate = loans.get(borrowDate); // list of loands on that date
-
-        if(loansOnDate == null){
-            return ;
-        }
-
-        loansOnDate.removeIf(loan -> loan.getBookId().equals(b.getId())
-                            && loan.getMemberId().equals(member.getId()));
-
-        if(loansOnDate == null){
-            loans.remove(borrowDate);
+        if(loansOnDate.isEmpty()){
+            loansByDueDate.remove(borrowDate);
         }
     }
 
     public List<Loan> listOverdueLoans(LocalDate today){
-        List<Loan> result = new ArrayList<>();
+        // return the list of loans due before today (count today as well)
+        SortedMap<LocalDate, List<Loan>> result = loansByDueDate.headMap(today, true);
+        List<Loan> resultLoan = new ArrayList<>();
 
-        for(LocalDate date : loans.keySet()){
-            for(Loan l : loans.get(date)){
-                if(l.getDueDate().isBefore(today)){
-                    result.add(l);
-                }
-            }
+        for(LocalDate date : result.keySet()){
+            resultLoan.addAll(result.get(date));
         }
-        return result;
+
+        return resultLoan;
+
     }
 
     public List<Book> searchBookByAuthor(String author){

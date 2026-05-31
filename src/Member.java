@@ -1,9 +1,6 @@
 import java.util.HashSet;
 
 public class Member extends Person{
-
-    private  String memberId;
-    private  String memberName;
     private HashSet<String> booksBorrowed;
 
     Member(String id, String name){
@@ -14,7 +11,7 @@ public class Member extends Person{
     public void role(){}
 
     public String getId(){
-        return this.memberId;
+        return this.getId();
     }
 
     public void addBorrowedBook(String id){

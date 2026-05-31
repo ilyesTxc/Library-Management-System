@@ -4,11 +4,13 @@ public class Loan {
     private String bookId;
     private String memberId;
     private LocalDate dueDate;
+    private LocalDate borrowDate;
 
-    Loan(String bookId,String memberId,LocalDate dueDate){
+    Loan(String bookId,String memberId,LocalDate dueDate,LocalDate borrowDate){
         this.bookId = bookId;
         this.memberId = memberId;
         this.dueDate = dueDate;
+        this.borrowDate = borrowDate;
     }
 
     public String getBookId(){
@@ -23,4 +25,7 @@ public class Loan {
         return this.dueDate;
     }
 
+    public LocalDate getBorrowDate(){
+        return this.borrowDate;
+    }
 }
