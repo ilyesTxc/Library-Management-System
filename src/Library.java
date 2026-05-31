@@ -31,12 +31,13 @@ public class Library {
         if(b == null || member == null){
             return ;
         }
+
         // set a loan date
         if(b.getAvailableCopies() > 0){
             Loan bookLoan = new Loan(b.getId(),member.getId(),LocalDate.now().plusDays(14),LocalDate.now());
-            LocalDate today = LocalDate.now();
+            LocalDate dueDate = LocalDate.now().plusDays(14);
 
-            loansByDueDate.computeIfAbsent(today, date -> new ArrayList<>()).add(bookLoan);
+            loansByDueDate.computeIfAbsent(dueDate, date -> new ArrayList<>()).add(bookLoan);
 
             member.addBorrowedBook(b.getId());
             b.decreaseAvaialbleCopies();

@@ -2,8 +2,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Main{
-
-    public static void main(String[] args) {
+     static void main() {
         // create librarians, members, books, try borrowing out of stock books...
         // no need to manually create loans
         Book book1 = new Book("90lOM3", "Vive Bourguiba", "Adem khechine", 3);
@@ -14,9 +13,6 @@ public class Main{
         Member member2 = new Member("Y", "Iyed Gouia");
         Member member3 = new Member("Z", "Melek Arbi");
 
-        Librarian librarian = new Librarian("O", "Aam anwer");
-
-        BookRepository bookRepository = new BookRepository();
         Library library = new Library();
 
         library.addBook(book1);
