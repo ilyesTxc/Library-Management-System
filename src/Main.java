@@ -42,6 +42,9 @@ public class Main{
         //this one should fail
         Book foundBook2 = library.findBookById("AZEZEZ");
 
+        System.out.println(foundBook);
+        System.out.println(foundBook2);
+
         System.out.println("\nSearch books by author:");
         List<Book> booksByAuthor = library.searchBookByAuthor("Kouja Mohamed Aziz");
 

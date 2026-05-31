@@ -30,6 +30,6 @@ public class Loan {
     }
 
     public String toString() {
-        return "Book{'id' = " + bookId + " 'member'= " + memberId + " 'due date' = " + dueDate + " 'borrowed date' = " + borrowDate + "}";
+        return "Loan{'id' = " + bookId + " 'member'= " + memberId + " 'due date' = " + dueDate + " 'borrowed date' = " + borrowDate + "}";
     }
 }
